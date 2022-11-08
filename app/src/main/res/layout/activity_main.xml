@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/layout_group_chat"
+        android:id="@+id/AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -14,9 +14,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_gchannel"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="80dp"
             android:theme="@style/Widget.AppCompat.Toolbar"
             app:popupTheme="@style/Theme.AppCompat.Light">
 
@@ -24,32 +24,24 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_gchat"
+        android:id="@+id/messages_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
-        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat" />
-
-    <TextView
-        android:id="@+id/text_gchat_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/view_divider"
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayout"
+        tools:listitem="@layout/message_item" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e0e0e0"
-        app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox" />
+        app:layout_constraintBottom_toTopOf="@+id/chat_box_layout" />
 
     <RelativeLayout
-        android:id="@+id/layout_gchat_chatbox"
+        android:id="@+id/chat_box_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,26 +49,36 @@
 
 
         <EditText
-            android:layout_marginStart="16dp"
-            android:id="@+id/edit_gchat_message"
+            android:id="@+id/edit_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/button_gchat_send"
-            android:background="@android:color/transparent"
-            android:hint="Enter Message"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_toStartOf="@+id/send_button"
+            android:background="@drawable/ev_edit_text_border"
+            android:hint="@string/edit_view_default"
             android:inputType="text"
             android:maxLines="6"
-            tools:ignore="Autofill" />
+            android:paddingStart="24dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="12dp"
+            tools:ignore="Autofill,TextContrastCheck" />
 
-        <Button
-            android:id="@+id/button_gchat_send"
-            android:layout_width="64dp"
+        <ImageButton
+            android:id="@+id/send_button"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
-            android:background="?attr/selectableItemBackground"
-            android:text="Send"
-            android:textColor="@color/colorPrimary" />
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bt_button"
+            android:src="@drawable/ic_send"
+            android:contentDescription="@string/send_message" />
 
     </RelativeLayout>
 

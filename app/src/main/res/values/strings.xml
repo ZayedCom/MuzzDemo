@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Muzz Demo</string>
+    <string name="edit_view_default">it\'s a muzzmatch !!</string>
+    <string name="send_message">Send Message</string>
+    <string name="message_timestamp">Timestamp</string>
+    <string name="message_text">Message Text</string>
+    <string name="message_tick">Received check</string>
 </resources>
