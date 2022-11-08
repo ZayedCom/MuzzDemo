@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="roundedAvatar" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>
