@@ -9,7 +9,6 @@
         android:id="@+id/AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         app:elevation="16dp"
