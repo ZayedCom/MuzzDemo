@@ -5,6 +5,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.muzz.muzzdemo.R;
 import com.muzz.muzzdemo.model.MessageModel;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,12 +59,24 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         TextView messageTimestamp;
 
         @SuppressLint("NonConstantResourceId")
-        @BindView(R.id.message_text)
-        TextView messageText;
+        @BindView(R.id.sent_message)
+        FrameLayout sentMessage;
 
         @SuppressLint("NonConstantResourceId")
-        @BindView(R.id.message_tick)
-        ImageView messageTick;
+        @BindView(R.id.sent_message_text)
+        TextView sentMessageText;
+
+        @SuppressLint("NonConstantResourceId")
+        @BindView(R.id.sent_message_tick)
+        ImageView sentMessageTick;
+
+        @SuppressLint("NonConstantResourceId")
+        @BindView(R.id.received_message)
+        FrameLayout receivedMessage;
+
+        @SuppressLint("NonConstantResourceId")
+        @BindView(R.id.received_message_text)
+        TextView receivedMessageText;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,12 +88,19 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         void bind(MessageModel message) {
             //Convert unix timestamp to the desired timestamp
             messageTimestamp.setText(Html.fromHtml(TimeStamp.getTimeStamp(message.getUnix())));
-            messageText.setText(message.getMessageText());
+
+            if (Objects.equals(message.getUserID(), "Zaid K. Al Qassar")) {
+                sentMessageText.setText(message.getMessageText());
+                receivedMessage.setVisibility(View.GONE);
+            } else {
+                receivedMessageText.setText(message.getMessageText());
+                sentMessage.setVisibility(View.GONE);
+            }
 
             if (message.isReceived()) {
-                messageTick.setImageResource(R.drawable.ic_message_received);
+                sentMessageTick.setImageResource(R.drawable.ic_message_received);
             } else {
-                messageTick.setImageResource(R.drawable.ic_message_ticked);
+                sentMessageTick.setImageResource(R.drawable.ic_message_ticked);
             }
         }
     }
