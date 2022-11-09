@@ -65,6 +65,8 @@ public class MessagingActivity extends AppCompatActivity {
 
     //Taking user text input from the editView and sending the message.
     public void sendMessage(View view) {
+        messagingViewModel.sendMessage("Zaid K. Al Qassar", binding.editMessage.getText().toString());
+
         messagingViewModel.getMessageList().observe(this, messageList -> {
             messageAdapter = new MessageListAdapter(messageList);
 
@@ -74,8 +76,6 @@ public class MessagingActivity extends AppCompatActivity {
             binding.messagesRecyclerView.setLayoutManager(messageLayoutManager);
             binding.messagesRecyclerView.setAdapter(messageAdapter);
         });
-
-        messagingViewModel.sendMessage("Zaid K. Al Qassar", binding.editMessage.getText().toString());
 
         binding.editMessage.getText().clear();
     }

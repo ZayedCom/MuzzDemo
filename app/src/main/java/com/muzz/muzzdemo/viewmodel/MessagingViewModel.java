@@ -38,9 +38,14 @@ public class MessagingViewModel extends ViewModel {
         database.addDBMessage(message.getUserID(), message.getMessageText(), message.getUnix(), 0);
 
         List<MessageModel> messageList = new ArrayList<>();
+
+        if (messagesMutableLiveData.getValue() != null) {
+            messageList.addAll(messagesMutableLiveData.getValue());
+        }
+
         messageList.add(message);
 
-        messagesMutableLiveData.setValue(messageList);
+        messagesMutableLiveData.postValue(messageList);
     }
 
     //Fetching messages from local SQL database.
