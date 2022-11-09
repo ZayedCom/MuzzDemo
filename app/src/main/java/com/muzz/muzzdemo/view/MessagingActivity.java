@@ -1,4 +1,4 @@
-package com.muzz.muzzdemo;
+package com.muzz.muzzdemo.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.muzz.muzzdemo.R;
+
+public class MessagingActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_messaging);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
