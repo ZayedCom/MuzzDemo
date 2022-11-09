@@ -72,7 +72,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
         void bind(MessageModel message) {
             //Convert unix timestamp to the desired timestamp
-            messageTimestamp.setText(Math.toIntExact(message.getUnix()));
+            messageTimestamp.setText(TimeStamp.getTimeStamp(message.getUnix()));
             messageText.setText(message.getMessageText());
 
             if (message.isReceived()) {

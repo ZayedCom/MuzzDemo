@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -20,6 +22,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.muzz.muzzdemo.R;
 import com.muzz.muzzdemo.databinding.ActivityMessagingBinding;
 import com.muzz.muzzdemo.utility.Database;
+import com.muzz.muzzdemo.utility.MessageListAdapter;
 import com.muzz.muzzdemo.viewmodel.MessagingViewModel;
 
 import java.util.Objects;
@@ -31,7 +34,7 @@ public class MessagingActivity extends AppCompatActivity {
 
     public static SharedPreferences sharedPreferences;
 
-    public Database database;
+    public static Database database;
 
     public SQLiteDatabase dbSQL;
 
@@ -41,7 +44,26 @@ public class MessagingActivity extends AppCompatActivity {
 
     private ActivityMessagingBinding binding;
 
+    private MessageListAdapter messageAdapter;
+
     private Toolbar toolbar;
+
+    //Taking user text input from the editView and sending the message.
+    public void sendMessage(View view) {
+        messagingViewModel.getMessageList().observe(this, messageList -> {
+            messageAdapter = new MessageListAdapter(messageList);
+
+            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this);
+            messageLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+            binding.messagesRecyclerView.setLayoutManager(messageLayoutManager);
+            binding.messagesRecyclerView.setAdapter(messageAdapter);
+        });
+
+        messagingViewModel.sendMessage("Zaid K. Al Qassar", binding.editMessage.getText().toString());
+
+        binding.editMessage.getText().clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

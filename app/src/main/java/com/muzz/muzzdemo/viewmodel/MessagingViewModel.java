@@ -1,11 +1,12 @@
 package com.muzz.muzzdemo.viewmodel;
 
+import static com.muzz.muzzdemo.view.MessagingActivity.database;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.muzz.muzzdemo.model.MessageModel;
-import com.muzz.muzzdemo.utility.Database;
 import com.muzz.muzzdemo.utility.TimeStamp;
 
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ public class MessagingViewModel extends ViewModel {
     private final MutableLiveData<String> toastMessageObserver = new MutableLiveData<>();
 
     private MutableLiveData<List<MessageModel>> messagesMutableLiveData;
-
-    private Database database;
 
     //Observing data changes to display toast message.
     public LiveData<String> getToastObserver() {
