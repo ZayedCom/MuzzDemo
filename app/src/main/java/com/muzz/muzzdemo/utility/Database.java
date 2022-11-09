@@ -63,7 +63,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     //This method is use to add new message to our sqlite database.
-    public void addDBMessage(String userID, String messageText, long unix, boolean messageStatus) {
+    public void addDBMessage(String userID, String messageText, long unix, int messageStatus) {
 
         database = this.getWritableDatabase();
 
