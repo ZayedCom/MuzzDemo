@@ -31,9 +31,21 @@ android {
 
 dependencies {
 
+    //Google Standard Libraries
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Material Support
+    implementation 'com.google.android.material:material:1.7.0'
+
+    //ViewModel components
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.5.1'
+
+    //Butter Knife
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+
+    //Unit Test Libraries
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
