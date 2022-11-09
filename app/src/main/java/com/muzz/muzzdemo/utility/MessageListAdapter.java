@@ -1,6 +1,7 @@
 package com.muzz.muzzdemo.utility;
 
 import android.annotation.SuppressLint;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
         void bind(MessageModel message) {
             //Convert unix timestamp to the desired timestamp
-            messageTimestamp.setText(TimeStamp.getTimeStamp(message.getUnix()));
+            messageTimestamp.setText(Html.fromHtml(TimeStamp.getTimeStamp(message.getUnix())));
             messageText.setText(message.getMessageText());
 
             if (message.isReceived()) {

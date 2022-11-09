@@ -2,6 +2,7 @@ package com.muzz.muzzdemo.utility;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class TimeStamp {
 
@@ -16,10 +17,11 @@ public class TimeStamp {
             time *= 1000;
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE HH:mm");
+        SimpleDateFormat weekDayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
         Date resultDate = new Date(time);
 
-        return simpleDateFormat.format(resultDate);
+        return "<b>" + weekDayFormat.format(resultDate) + "</b> " + hourFormat.format(resultDate);
     }
 }

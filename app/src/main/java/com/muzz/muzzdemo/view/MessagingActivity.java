@@ -48,6 +48,21 @@ public class MessagingActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    //Loading messages from database when available.
+    public void retrieveMessages() {
+        messagingViewModel.getMessageList().observe(this, messageList -> {
+            messageAdapter = new MessageListAdapter(messageList);
+
+            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this);
+            messageLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+            binding.messagesRecyclerView.setLayoutManager(messageLayoutManager);
+            binding.messagesRecyclerView.setAdapter(messageAdapter);
+        });
+
+        messagingViewModel.fetchMessages();
+    }
+
     //Taking user text input from the editView and sending the message.
     public void sendMessage(View view) {
         messagingViewModel.getMessageList().observe(this, messageList -> {
@@ -93,6 +108,9 @@ public class MessagingActivity extends AppCompatActivity {
         toolbar = binding.toolbar;
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        //Retrieving messages from SQL database.
+        retrieveMessages();
     }
 
     @Override

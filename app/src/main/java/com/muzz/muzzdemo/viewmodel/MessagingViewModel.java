@@ -43,7 +43,7 @@ public class MessagingViewModel extends ViewModel {
         messagesMutableLiveData.setValue(messageList);
     }
 
-    //Fetching messages from local SQL database
+    //Fetching messages from local SQL database.
     public void fetchMessages() {
         messagesMutableLiveData.setValue(database.getDBMessages());
     }
