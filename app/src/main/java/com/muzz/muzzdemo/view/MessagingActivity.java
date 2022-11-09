@@ -26,7 +26,8 @@ import java.util.Objects;
 
 public class MessagingActivity extends AppCompatActivity {
 
-    public static final String myPreferences = "myExchangeRates";
+    //sharedPreferences key
+    public static final String myPreferences = "muzz";
 
     public static SharedPreferences sharedPreferences;
 
@@ -46,12 +47,15 @@ public class MessagingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Loading up data from database.
         database = new Database(MessagingActivity.this);
         dbSQL = database.getWritableDatabase();
         database.close();
 
+        //Loading up sharedPreferences.
         sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
+        //Initializing the viewModel.
         messagingViewModel = new ViewModelProvider(this).get(MessagingViewModel.class);
 
         binding = DataBindingUtil.setContentView(MessagingActivity.this, R.layout.activity_messaging);
@@ -63,6 +67,7 @@ public class MessagingActivity extends AppCompatActivity {
         binding = ActivityMessagingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Setting up the toolbar.
         toolbar = binding.toolbar;
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
