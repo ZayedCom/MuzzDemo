@@ -3,28 +3,31 @@ package com.muzz.muzzdemo.model;
 public class MessageModel {
 
     String userID;
-    String unix;
     String messageText;
 
-    boolean isReceived = false;
+    long unix;
 
-    public MessageModel(String userID, String unix, String messageText, boolean isReceived) {
+    boolean isReceived;
+
+    public MessageModel(String userID, String messageText, long unix, int isReceived) {
         this.userID = userID;
-        this.unix = unix;
         this.messageText = messageText;
-        this.isReceived = isReceived;
+        this.unix = unix;
+
+        //Converting the int type value of the model to boolean because SQLite can't handel boolean type
+        this.isReceived = isReceived >= 1;
     }
 
     public String getUserID() {
         return userID;
     }
 
-    public String getUnix() {
-        return unix;
-    }
-
     public String getMessageText() {
         return messageText;
+    }
+
+    public long getUnix() {
+        return unix;
     }
 
     public boolean isReceived() {
