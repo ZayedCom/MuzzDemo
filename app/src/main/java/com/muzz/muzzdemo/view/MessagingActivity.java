@@ -48,8 +48,8 @@ public class MessagingActivity extends AppCompatActivity {
         messagingViewModel.getMessageList().observe(this, messageList -> {
             messageAdapter = new MessageListAdapter(messageList);
 
-            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this);
-            messageLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            messageLayoutManager.setStackFromEnd(true);
 
             binding.messagesRecyclerView.setLayoutManager(messageLayoutManager);
             binding.messagesRecyclerView.setAdapter(messageAdapter);
@@ -69,8 +69,8 @@ public class MessagingActivity extends AppCompatActivity {
         messagingViewModel.getMessageList().observe(this, messageList -> {
             messageAdapter = new MessageListAdapter(messageList);
 
-            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this);
-            messageLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            LinearLayoutManager messageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            messageLayoutManager.setStackFromEnd(true);
 
             binding.messagesRecyclerView.setLayoutManager(messageLayoutManager);
             binding.messagesRecyclerView.setAdapter(messageAdapter);
