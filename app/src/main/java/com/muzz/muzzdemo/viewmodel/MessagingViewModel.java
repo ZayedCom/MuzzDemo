@@ -18,6 +18,11 @@ public class MessagingViewModel extends ViewModel {
 
     private MutableLiveData<List<MessageModel>> messagesMutableLiveData;
 
+    //Set toast message text
+    public void setToastMessage(String toastMessage) {
+        toastMessageObserver.setValue(toastMessage);
+    }
+
     //Observing data changes to display toast message.
     public LiveData<String> getToastObserver() {
         return toastMessageObserver;

@@ -122,6 +122,9 @@ public class MessagingActivity extends AppCompatActivity {
 
         //Retrieving messages from SQL database.
         retrieveMessages();
+
+        //Toast message observer
+        messagingViewModel.getToastObserver().observe(this, message -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
     }
 
     @Override
@@ -161,7 +164,7 @@ public class MessagingActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_options) {
-            Toast.makeText(this, "Clicked More Options..", Toast.LENGTH_SHORT).show();
+            messagingViewModel.setToastMessage("You Clicked More Options..");
         }
         return super.onOptionsItemSelected(item);
     }
