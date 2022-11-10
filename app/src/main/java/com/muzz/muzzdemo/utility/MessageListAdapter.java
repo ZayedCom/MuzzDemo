@@ -108,6 +108,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 if (message.isReceived()) {
                     sentMessage.setBackgroundResource(R.drawable.bg_outgoing_bubble);
                     receivedMessage.setBackgroundResource(R.drawable.bg_incoming_bubble);
+                    messageTimestamp.setVisibility(View.VISIBLE);
                 } else {
                     sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
                     receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
@@ -129,6 +130,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 if (message.isReceived()) {
                     sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
                     receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
+                    messageTimestamp.setVisibility(View.VISIBLE);
                 } else {
                     sentMessage.setBackgroundResource(R.drawable.bg_outgoing_bubble);
                     receivedMessage.setBackgroundResource(R.drawable.bg_incoming_bubble);
