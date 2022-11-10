@@ -86,17 +86,37 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         }
 
         void bind(MessageModel message) {
-            //Convert unix timestamp to the desired timestamp
+            //Convert unix timestamp to the desired timestamp.
             messageTimestamp.setText(Html.fromHtml(TimeStamp.getTimeStamp(message.getUnix())));
 
+            //Set the bubble side.
             if (Objects.equals(message.getUserID(), "Zaid K. Al Qassar")) {
                 sentMessageText.setText(message.getMessageText());
                 receivedMessage.setVisibility(View.GONE);
+
+                //Checking if the message should have tail or not and if it need sectioning or not
+                if (!TimeStamp.getMessageTimeStamp(message.getUnix())) {
+                    sentMessage.setBackgroundResource(R.drawable.bg_outgoing_bubble);
+                    messageTimestamp.setVisibility(View.INVISIBLE);
+                } else if (TimeStamp.getMessageTimeStamp(message.getUnix())) {
+                    sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
+                    messageTimestamp.setVisibility(View.VISIBLE);
+                }
             } else {
                 receivedMessageText.setText(message.getMessageText());
                 sentMessage.setVisibility(View.GONE);
+
+                //Checking if the message should have tail or not and if it need sectioning or not
+                if (!TimeStamp.getMessageTimeStamp(message.getUnix())) {
+                    receivedMessage.setBackgroundResource(R.drawable.bg_incoming_bubble);
+                    messageTimestamp.setVisibility(View.INVISIBLE);
+                } else if (TimeStamp.getMessageTimeStamp(message.getUnix())) {
+                    receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
+                    messageTimestamp.setVisibility(View.VISIBLE);
+                }
             }
 
+            //Checking if the message was delivered or not.
             if (message.isReceived()) {
                 sentMessageTick.setImageResource(R.drawable.ic_message_received);
             } else {

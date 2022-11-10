@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
     <TextView
         android:id="@+id/message_timestamp"
@@ -10,19 +11,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="25dp"
         android:gravity="center"
-        android:text="@string/message_timestamp" />
+        android:text="@string/message_timestamp"
+        android:visibility="invisible" />
 
     <FrameLayout
         android:id="@+id/sent_message"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_outgoing_bubble"
+        android:background="@drawable/bg_tailed_outgoing_bubble"
+        android:minWidth="100dp"
         android:paddingStart="16dp"
         android:paddingTop="5dp"
         android:paddingEnd="16dp"
@@ -32,6 +35,7 @@
             android:id="@+id/sent_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="5dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
@@ -45,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
             android:contentDescription="@string/message_tick"
             app:srcCompat="@drawable/ic_message_ticked" />
 
@@ -56,8 +61,9 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom|start"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/bg_incoming_bubble"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bg_tailed_incoming_bubble"
+        android:minWidth="100dp"
         android:paddingStart="16dp"
         android:paddingTop="5dp"
         android:paddingEnd="16dp"
@@ -67,6 +73,7 @@
             android:id="@+id/received_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="5dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
