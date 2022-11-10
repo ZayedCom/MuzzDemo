@@ -2,7 +2,6 @@ package com.muzz.muzzdemo.utility;
 
 import android.annotation.SuppressLint;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +46,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public int getItemCount() {
         return messages.size();
-    }
-
-    public void setOnItemClickListener(View.OnClickListener itemClickListener) {
-        onItemClickListener = itemClickListener;
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
