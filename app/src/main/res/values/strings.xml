@@ -5,7 +5,10 @@
     <string name="username">Username</string>
     <string name="edit_view_default">it\'s a muzzmatch !!</string>
     <string name="send_message">Send Message</string>
+    <string name="reply_message">Reply to the message</string>
     <string name="message_timestamp">Timestamp</string>
     <string name="message_text">Message Text</string>
     <string name="message_tick">Received check</string>
+    <string name="user_1">Zaid K. Al Qassar</string>
+    <string name="user_2">Shahzad Younas</string>
 </resources>

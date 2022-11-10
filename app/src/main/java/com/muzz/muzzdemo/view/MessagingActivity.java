@@ -29,11 +29,11 @@ public class MessagingActivity extends AppCompatActivity {
 
     public static SharedPreferences sharedPreferences;
 
+    private static Bundle bundleRecyclerViewState;
+
     public static Database database;
 
     public SQLiteDatabase dbSQL;
-
-    private static Bundle bundleRecyclerViewState;
 
     private MessagingViewModel messagingViewModel;
 
@@ -41,7 +41,7 @@ public class MessagingActivity extends AppCompatActivity {
 
     private MessageListAdapter messageAdapter;
 
-    private Toolbar toolbar;
+    boolean switchUser = false;
 
     //Loading messages from database when available.
     public void retrieveMessages() {
@@ -60,7 +60,11 @@ public class MessagingActivity extends AppCompatActivity {
 
     //Taking user text input from the editView and sending the message.
     public void sendMessage(View view) {
-        messagingViewModel.sendMessage("Zaid K. Al Qassar", binding.editMessage.getText().toString());
+        if (!switchUser) {
+            messagingViewModel.sendMessage("Zaid K. Al Qassar", binding.editMessage.getText().toString());
+        } else {
+            messagingViewModel.sendMessage("Shahzad Younas", binding.editMessage.getText().toString());
+        }
 
         messagingViewModel.getMessageList().observe(this, messageList -> {
             messageAdapter = new MessageListAdapter(messageList);
@@ -73,6 +77,17 @@ public class MessagingActivity extends AppCompatActivity {
         });
 
         binding.editMessage.getText().clear();
+    }
+
+    //Switching user and reply to message
+    public void replyMessage(View view) {
+        if (switchUser) {
+            binding.username.setText(R.string.user_1);
+            switchUser = false;
+        } else {
+            binding.username.setText(R.string.user_2);
+            switchUser = true;
+        }
     }
 
     @Override
@@ -100,9 +115,10 @@ public class MessagingActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //Setting up the toolbar.
-        toolbar = binding.toolbar;
+        Toolbar toolbar = binding.toolbar;
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        binding.username.setText(R.string.user_1);
 
         //Retrieving messages from SQL database.
         retrieveMessages();

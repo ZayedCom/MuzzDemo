@@ -102,7 +102,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                     sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
                     messageTimestamp.setVisibility(View.VISIBLE);
                 }
-            } else {
+            } else if (Objects.equals(message.getUserID(), "Shahzad Younas")) {
                 receivedMessageText.setText(message.getMessageText());
                 sentMessage.setVisibility(View.GONE);
 
