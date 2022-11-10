@@ -48,20 +48,6 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //This method is to save a new table inside the database.
-    public void createDBTable() {
-        String query = "CREATE TABLE IF NOT EXISTS " + MESSAGING_TABLE_NAME + " ("
-                + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + USER_COL + " TEXT,"
-                + MESSAGE_COL + " TEXT,"
-                + UNIX_COL + " LONG,"
-                + STATUS_COL + " INTEGER)";
-
-        database = getWritableDatabase();
-        database.execSQL(query);
-        database.close();
-    }
-
     //This method is use to add new message to our sqlite database.
     public void addDBMessage(String userID, String messageText, long unix, int messageStatus) {
 
@@ -97,5 +83,12 @@ public class Database extends SQLiteOpenHelper {
         database.close();
 
         return data;
+    }
+
+    //This method is to set the message as delivered.
+    public void setMessageAsDelivered(String userID) {
+        database = getWritableDatabase();
+        database.execSQL("UPDATE " + MESSAGING_TABLE_NAME + " SET " + STATUS_COL + "=" + "1" + " WHERE userID =" + '?', new String[]{userID});
+        database.close();
     }
 }

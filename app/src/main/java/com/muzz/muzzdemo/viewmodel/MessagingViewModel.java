@@ -57,4 +57,9 @@ public class MessagingViewModel extends ViewModel {
     public void fetchMessages() {
         messagesMutableLiveData.setValue(database.getDBMessages());
     }
+
+    //Setting messages as delivered.
+    public void setMessageDeliveryStatus(String userID) {
+        database.setMessageAsDelivered(userID);
+    }
 }

@@ -29,8 +29,6 @@ public class MessagingActivity extends AppCompatActivity {
 
     public static SharedPreferences sharedPreferences;
 
-    private static Bundle bundleRecyclerViewState;
-
     public static Database database;
 
     public SQLiteDatabase dbSQL;
@@ -82,9 +80,11 @@ public class MessagingActivity extends AppCompatActivity {
     //Switching user and reply to message
     public void replyMessage(View view) {
         if (switchUser) {
+            messagingViewModel.setMessageDeliveryStatus("Shahzad Younas");
             binding.username.setText(R.string.user_1);
             switchUser = false;
         } else {
+            messagingViewModel.setMessageDeliveryStatus("Zaid K. Al Qassar");
             binding.username.setText(R.string.user_2);
             switchUser = true;
         }
@@ -125,34 +125,6 @@ public class MessagingActivity extends AppCompatActivity {
 
         //Toast message observer
         messagingViewModel.getToastObserver().observe(this, message -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        // save RecyclerView state when changing UI orientation
-        /*
-        bundleRecyclerViewState = new Bundle();
-        if (Objects.requireNonNull(binding.messagesRecyclerView.getLayoutManager()).getChildAt(0) != null) {
-            Parcelable listState = binding.messagesRecyclerView.getLayoutManager().onSaveInstanceState();
-            bundleRecyclerViewState.putParcelable(myPreferences, listState);
-        */
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // restore RecyclerView state when changing UI orientation
-        /*
-        if (!database.getDBMessages().isEmpty()) {
-            if (Objects.requireNonNull(binding.messagesRecyclerView.getLayoutManager()).getChildAt(0) != null) {
-                Parcelable listState = bundleRecyclerViewState.getParcelable(myPreferences);
-                binding.messagesRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
-            }
-        }
-         */
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.muzz.muzzdemo.utility;
 
 import android.annotation.SuppressLint;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,6 +103,15 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                     sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
                     messageTimestamp.setVisibility(View.VISIBLE);
                 }
+
+                //Checking if the message is sent by another user
+                if (message.isReceived()) {
+                    sentMessage.setBackgroundResource(R.drawable.bg_outgoing_bubble);
+                    receivedMessage.setBackgroundResource(R.drawable.bg_incoming_bubble);
+                } else {
+                    sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
+                    receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
+                }
             } else if (Objects.equals(message.getUserID(), "Shahzad Younas")) {
                 receivedMessageText.setText(message.getMessageText());
                 sentMessage.setVisibility(View.GONE);
@@ -113,6 +123,15 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 } else if (TimeStamp.getMessageTimeStamp(message.getUnix())) {
                     receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
                     messageTimestamp.setVisibility(View.VISIBLE);
+                }
+
+                //Checking if the message is sent by another user
+                if (message.isReceived()) {
+                    sentMessage.setBackgroundResource(R.drawable.bg_tailed_outgoing_bubble);
+                    receivedMessage.setBackgroundResource(R.drawable.bg_tailed_incoming_bubble);
+                } else {
+                    sentMessage.setBackgroundResource(R.drawable.bg_outgoing_bubble);
+                    receivedMessage.setBackgroundResource(R.drawable.bg_incoming_bubble);
                 }
             }
 
